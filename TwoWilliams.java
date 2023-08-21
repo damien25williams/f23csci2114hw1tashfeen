@@ -1,4 +1,4 @@
-public class TwoTashfeen{
+public class TwoWilliams{
   public static void main(String[] args){
     int n = Integer.parseInt(args[0]);
     int sum = 0;
