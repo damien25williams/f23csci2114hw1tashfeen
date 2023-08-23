@@ -1,5 +1,4 @@
 public class TwoWilliams{
-  public class TwoTashfeen{
   public static void main(String[] args){
     //check for argument
     if(args.length < 1){
