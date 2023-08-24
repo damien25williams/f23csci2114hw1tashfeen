@@ -2,45 +2,28 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class FourWilliams{
-  public static byte[] getFileBytes(String path){
-    byte[] bytes = null;
+public class FiveWilliams{
+  public static void main(String[] args){
+    int m = (int)Math.pow(2,7);
+    char[] cipher = new char[m];
+    for(int i = 0; i < m; i++){
+      cipher[i] = (char)mod(55 * (i - 3), m);
+    }
+    String plain = read("cipher.txt");
+    for(int i = 0; i < plain.length(); i++){
+      System.out.print(cipher[plain.charAt(i)]);
+    }
+  }
+  public static String read(String path){
+    String ret = null;
     try{
-      bytes = Files.readAllBytes(Paths.get(path));
-    } catch(IOException e){
+      ret = new String(Files.readAllBytes(Paths.get(path)));
+    }catch (IOException e){
       e.printStackTrace();
     }
-    return bytes;
+    return ret;
   }
-
-  public static void main(String[] args){
-    double startTime = System.nanoTime();
-    byte[] bytes = getFileBytes("half_gaps.bin");
-    long[] gaps = new long[bytes.length];
-    for(int i = 0; i < bytes.length; i++){
-      gaps[i] = Byte.toUnsignedLong(bytes[i]);
-    }
-    long cumsum = 0;
-    for(int i = 0; i < bytes.length; i++){
-      cumsum = gaps[i] + cumsum;
-    }
-    long newNumber = cumsum * 2 + 3;
-    double duration = System.nanoTime() - startTime;
-    duration = duration / 1000;
-
-    //print duration
-    System.out.println("Time taken: " + duration + " in seconds.");
-    // first 15 elements
-    System.out.println("First 15:");
-    for (int i = 0; i < 15; i++) {
-      System.out.print(gaps[i] + " ");
-    }
-    System.out.println();
-
-    // last 5 elements
-    System.out.println("Last 5:");
-    for (int i = gaps.length - 5; i < gaps.length; i++) {
-      System.out.print(gaps[i] + " ");
-    }
-  }  
+  public static int mod(int x, int n){
+    return ((x % n) + n) % n;
+  }
 }
