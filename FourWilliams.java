@@ -22,9 +22,9 @@ public class FourWilliams{
     }
     long cumsum = 0;
     for(int i = 0; i < bytes.length; i++){
-      cumsum = gaps[i] + cumsum;
+      cumsum = (2 * gaps[i] + 3) + cumsum;
     }
-    long newNumber = cumsum * 2 + 3;
+    long newNumber = cumsum;
     double duration = System.nanoTime() - startTime;
     duration = duration / 1000;
 
